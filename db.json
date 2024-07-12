@@ -3,15 +3,26 @@
     {
       "id": "bem-estar",
       "nome": "bem-estar",
+<<<<<<< HEAD
       "subcategorias": []
+=======
+      "subcategorias": [
+        "higiene",
+        "saude"
+      ]
+>>>>>>> 3fc2e46b9d32befc076ab00ffdbff6bb76179daa
     },
     {
       "id": "comportamento",
       "nome": "comportamento",
+<<<<<<< HEAD
       "subcategorias": [
         "tes te x",
         []
       ]
+=======
+      "subcategorias": []
+>>>>>>> 3fc2e46b9d32befc076ab00ffdbff6bb76179daa
     }
   ],
   "posts": [
