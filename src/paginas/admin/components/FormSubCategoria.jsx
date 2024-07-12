@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button, TextField } from "@mui/material";
 import { api, busca } from "../../../api/api";
 import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const FormSubCategoria = () => {
+    let history = useHistory()
     const parametros = useParams()
 
     const [nomeCategoria, setNomeCategoria] = useState([])
@@ -12,11 +14,33 @@ const FormSubCategoria = () => {
     const [subCategoria2, setSubCategoria2] = useState([])
 
     useEffect(() => {
+        busca(`/categorias/${parametros.id}`, (categoria) => {
+            setSubCategorias(categoria.subcategorias)
+        })
+    }, [parametros])
+
+    useEffect(() => {
         if (parametros.id) {
             api.get(`categorias/${parametros.id}/`)
                 .then(resposta => setNomeCategoria(resposta.data.nome))
         }
     }, [parametros])
+
+    const CadCategoria = (evento) => {
+        evento.preventDefault()
+
+        if (parametros.id) {
+            api.put(`/categorias/${parametros.id}/`, {
+                id: nomeCategoria,
+                nome: nomeCategoria,
+                subcategorias: [subCategoria1, subCategoria2]
+            })
+                .then(() => {
+                    alert("Sucesso na atualização!")
+                    history.push('/admin/')
+                })
+        }
+    }
     
     return (
         <main className="container flex flex-centro">
@@ -24,7 +48,11 @@ const FormSubCategoria = () => {
                 <h3 className="titulo-pagina">
                     Categoria: {parametros.id} / Subcategorias:
                 </h3>
-                <form>
+                {
+                    subcategorias.map((subcategoria) => (
+                        <p key={subcategoria.id}>- {subcategoria}</p>))
+                }
+                <form onSubmit={CadCategoria}>
                     <TextField
                         value={subCategoria1}
                         onChange={(evento) => setSubCategoria1(evento.target.value)}

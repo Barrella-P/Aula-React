@@ -3,15 +3,15 @@
     {
       "id": "bem-estar",
       "nome": "bem-estar",
-      "subcategorias": [
-        "higiene",
-        "saude"
-      ]
+      "subcategorias": []
     },
     {
       "id": "comportamento",
       "nome": "comportamento",
-      "subcategorias": []
+      "subcategorias": [
+        "tes te x",
+        []
+      ]
     }
   ],
   "posts": [
